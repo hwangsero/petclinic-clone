@@ -19,7 +19,8 @@ import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/owners")
+@RequestMapping(
+        "/owners")
 public class OwnerController {
 
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
@@ -62,7 +63,7 @@ public class OwnerController {
         Collection<Owner> findOwners = ownerRepository.findByLastName(owner.getLastName());
         if(findOwners.isEmpty()) {
             result.rejectValue("lastName", "notFound", "notFound");
-            return "/findOwners";
+            return "owners/findOwners";
         }
         else if(findOwners.size() == 1) {
             owner = findOwners.iterator().next();
